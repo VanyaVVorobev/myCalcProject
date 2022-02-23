@@ -10,26 +10,37 @@ class calcLogic {
         var secondNum = ""
         var sign = '#'
         for(i in 1 until buff.length) {
-            if(((buff[i] < '0')||('9' < buff[i]))&&(buff[i]!='.')) {
+            if(((buff[i] < '0')||('9' < buff[i]))&&(buff[i]!='.')&&(buff[i]!='(')&&(buff[i]!=')')) {
                 sign = buff[i]
                 buff = buff.replaceRange(i, i+1,"#")
                 firstNum = buff.substringBefore('#')
                 secondNum = buff.substringAfter('#')
+                break
+            }
+        }
+        for(i in firstNum.length - 1 downTo  0) {
+            if ((firstNum[i] == '(') || (firstNum[i] == ')')) {
+                firstNum = firstNum.removeRange(i, i + 1)
+            }
+        }
+        for(i in secondNum.length - 1 downTo 0) {
+            if((secondNum[i]=='(')||(secondNum[i]==')')) {
+                secondNum = secondNum.removeRange(i,i+1)
             }
         }
 
-        var result = 0.0
+        var result:Double = 0.0
         if(sign == '+') {
-            result =  (firstNum.toDouble() + secondNum.toDouble())
+            result =  (firstNum.toDouble() + secondNum.toDouble()).toDouble()
         }
         if(sign == '-') {
-            result =  (firstNum.toDouble() - secondNum.toDouble())
+            result =  (firstNum.toDouble() - secondNum.toDouble()).toDouble()
         }
         if(sign == '*') {
-            result = (firstNum.toDouble() * secondNum.toDouble())
+            result = (firstNum.toDouble() * secondNum.toDouble()).toDouble()
         }
         if(sign == '/') {
-            result =  (firstNum.toDouble() / secondNum.toDouble())
+            result =  (firstNum.toDouble() / secondNum.toDouble()).toDouble()
         }
 
         if(result>=0) {
