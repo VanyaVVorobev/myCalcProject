@@ -2,7 +2,7 @@ package com.example.calctest
 
 import kotlin.math.floor
 
-class calcLogic {
+class CalcLogic {
 
     private  fun doSimpleOperation(expression: String):String {
         var buff = expression
@@ -29,7 +29,7 @@ class calcLogic {
             }
         }
 
-        var result:Double = 0.0
+        var result = 0.0
         if(sign == '+') {
             result =  (firstNum.toDouble() + secondNum.toDouble()).toDouble()
         }
@@ -53,7 +53,8 @@ class calcLogic {
         var result = expression
         var matchResult = regular.find(result)
         while (matchResult != null) {
-            result = result.replaceRange(matchResult.range.first, matchResult.range.last + 1, doSimpleOperation(matchResult.value))
+            result = result.replaceRange(matchResult.range.first, matchResult.range.last + 1,
+                doSimpleOperation(matchResult.value))
             matchResult = regular.find(result)
         }
 
@@ -62,7 +63,7 @@ class calcLogic {
 
     private fun calculateSimpleExpression(expression: String):String {
         var result = expression
-        var regular = Regex("([\\-+]?[\\d.]+[*/][\\d.]+)|([-+]?[\\d]+\\*\\([+\\-]?[\\d.]+\\))")
+        var regular = Regex("([\\-+]?[\\d.]+[*/][\\-+]?[\\d.]+)|([-+]?[\\d.]+\\*\\([+\\-]?[\\d.]+\\))")
         result = doOperationsByRegex(result, regular)
         regular = Regex("[\\-+]?[\\d.]+[\\-+][\\d.]+")
         result = doOperationsByRegex(result, regular)
@@ -75,7 +76,8 @@ class calcLogic {
         val regular = Regex("\\([\\-+]?[\\d.]+([*/+\\-][\\d.]+)+\\)")
         var matchResult = regular.find(result)
         while(matchResult != null) {
-            result = result.replaceRange(matchResult.range.first, matchResult.range.last + 1, "1*" + calculateSimpleExpression(matchResult.value))
+            result = result.replaceRange(matchResult.range.first, matchResult.range.last + 1,
+                "1*" + calculateSimpleExpression(matchResult.value))
             matchResult = regular.find(result)
         }
         return result
