@@ -18,6 +18,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        for(id in binding.buttonsGroup.referencedIds) {
+            val currentButton = findViewById<Button>(id)
+            currentButton.setOnClickListener(listener)
+        }
+
+    }
+
+    val listener = View.OnClickListener { view->
+        when(view.id) {
+            binding.oneButton.id -> onClickNumber(view)
+            binding.twoButton.id -> onClickNumber(view)
+            binding.threeButton.id -> onClickNumber(view)
+            binding.fourButton.id -> onClickNumber(view)
+            binding.fiveButton.id -> onClickNumber(view)
+            binding.sixButton.id -> onClickNumber(view)
+            binding.sevenButton.id -> onClickNumber(view)
+            binding.eightButton.id -> onClickNumber(view)
+            binding.nineButton.id -> onClickNumber(view)
+            binding.zeroButton.id -> onClickNumber(view)
+
+            binding.plusButton.id -> onClickSign(view)
+            binding.minusButton.id -> onClickSign(view)
+            binding.dividerButton.id -> onClickSign(view)
+            binding.multiplyButton.id -> onClickSign(view)
+
+            binding.percentButton.id -> onClickPercent()
+            binding.changeSignButton.id -> onClickChangeSign()
+            binding.pointButton.id -> onClickPoint()
+            binding.equalButton.id -> onClickEqual()
+            binding.acButton.id -> screenFlush()
+        }
     }
 
     fun onClickNumber(view: View) {
@@ -28,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         isPointLast = false
     }
 
-    fun onClickPoint(view: View) {
+    fun onClickPoint() {
         if((binding.expressionText.text.isEmpty())||(isSignLast)||(isPointClicked)) {
             Toast.makeText(applicationContext,
                 "this action is not possible", Toast.LENGTH_LONG).show()
@@ -56,7 +88,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onClickChangeSign(view: View) {
+    fun onClickChangeSign() {
         if((binding.expressionText.text.isEmpty())||(isSignLast)) {
             Toast.makeText(applicationContext,
                 "this action is not possible", Toast.LENGTH_LONG).show()
@@ -87,7 +119,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onClickPercent(view: View) {
+    fun onClickPercent() {
         if((binding.expressionText.text.isEmpty())||(isSignLast)||(isPointLast)) {
             Toast.makeText(applicationContext,
                 "this action is not possible", Toast.LENGTH_LONG).show()
@@ -100,7 +132,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun screenFlush(view: View) {
+    fun screenFlush() {
         binding.expressionText.text = ""
 
         isPointClicked = false
@@ -108,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         isPointLast = false
     }
 
-    fun onClickEqual(view: View) {
+    fun onClickEqual() {
         if((isPointLast)||(isSignLast)) {
             Toast.makeText(applicationContext,
                 "this action is not possible", Toast.LENGTH_LONG).show()
