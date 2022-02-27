@@ -1,7 +1,5 @@
 package com.example.calctest
 
-import android.view.View
-import android.widget.Button
 import kotlin.math.floor
 
 class CalcLogic {
@@ -135,8 +133,8 @@ class CalcLogic {
     fun canPressEqual ():Boolean = ((isPointLast)||(isSignLast))
     fun canPressPercent(expression: String):Boolean = ((expression.isEmpty())||(isSignLast)||(isPointLast))
 
-    fun addNum (expression: String, view: View):String {
-        val result = expression + (view as Button).text
+    fun addNum (expression: String, number:String):String {
+        val result = expression + number
         isSignLast = false
         isPointLast = false
         return result
@@ -147,8 +145,8 @@ class CalcLogic {
         isPointClicked = true
         return result
     }
-    fun addSign (expression: String, view: View): String {
-        val result = expression + (view as Button).text
+    fun addSign (expression: String, sign:String): String {
+        val result = expression + sign
         isSignLast = true
         isPointClicked = false
         return result
@@ -166,7 +164,7 @@ class CalcLogic {
         return result
     }
     fun addEqual(expression: String):String {
-        var result =  calculate(expression)
+        val result =  calculate(expression)
         if (expression.contains('.')) {
             isPointClicked = true
         }

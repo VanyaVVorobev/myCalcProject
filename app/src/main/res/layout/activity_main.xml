@@ -294,13 +294,17 @@
         app:layout_constraintGuide_percent="0.80" />
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/buttonsGroup"
+        android:id="@+id/numbersGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="oneButton, twoButton, threeButton, fourButton, fiveButton,
             sixButton, sevenButton, eightButton, nineButton, zeroButton,
-            plusButton,minusButton,multiplyButton,dividerButton,changeSignButton,
-            pointButton,equalButton,acButton,percentButton" />
+            plusButton,minusButton,multiplyButton,dividerButton" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/signsGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="plusButton,minusButton,multiplyButton,dividerButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
