@@ -25,8 +25,8 @@
         android:layout_marginStart="20dp"
         android:alpha="0.2"
         android:gravity="center_vertical"
-        android:text="8888888888"
-        android:fontFamily="@font/mycalc"
+        android:text="@string/_8888888888"
+        android:fontFamily="@font/calc"
         android:textSize="72sp"
 
         app:layout_constraintBottom_toBottomOf="@id/screenView"
@@ -40,7 +40,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:gravity="center_vertical"
-        android:fontFamily="@font/mycalc"
+        android:fontFamily="@font/calc"
         android:maxLines="1"
         android:textSize="72sp"
         android:text=""
@@ -52,7 +52,7 @@
     <Button
         android:id="@+id/acButton"
         style="@style/whiteButton"
-        android:text="AC"
+        android:text="@string/ac"
 
         app:layout_constraintBottom_toTopOf="@id/sevenButton"
         app:layout_constraintEnd_toStartOf="@id/changeSignButton"
@@ -62,7 +62,7 @@
     <Button
         android:id="@+id/changeSignButton"
         style="@style/whiteButton"
-        android:text="+/-"
+        android:text="@string/plusMinus"
 
         app:layout_constraintBottom_toTopOf="@id/eightButton"
         app:layout_constraintEnd_toStartOf="@id/percentButton"
@@ -72,7 +72,7 @@
     <Button
         android:id="@+id/percentButton"
         style="@style/whiteButton"
-        android:text="%"
+        android:text="@string/percent"
 
         app:layout_constraintBottom_toTopOf="@id/nineButton"
         app:layout_constraintEnd_toStartOf="@id/dividerButton"
@@ -82,7 +82,7 @@
     <Button
         android:id="@+id/dividerButton"
         style="@style/purpleButton"
-        android:text="/"
+        android:text="@string/divider"
 
         app:layout_constraintBottom_toTopOf="@id/multiplyButton"
         app:layout_constraintEnd_toEndOf="@id/rightGuideline"
@@ -93,7 +93,7 @@
     <Button
         android:id="@+id/sevenButton"
         style="@style/whiteButton"
-        android:text="7"
+        android:text="@string/seven"
 
         app:layout_constraintBottom_toTopOf="@id/fourButton"
         app:layout_constraintEnd_toStartOf="@id/eightButton"
@@ -103,7 +103,7 @@
     <Button
         android:id="@+id/eightButton"
         style="@style/whiteButton"
-        android:text="8"
+        android:text="@string/eight"
 
         app:layout_constraintBottom_toTopOf="@id/fiveButton"
         app:layout_constraintEnd_toStartOf="@id/nineButton"
@@ -113,7 +113,7 @@
     <Button
         android:id="@+id/nineButton"
         style="@style/whiteButton"
-        android:text="9"
+        android:text="@string/nine"
 
         app:layout_constraintBottom_toTopOf="@id/sixButton"
         app:layout_constraintEnd_toStartOf="@id/multiplyButton"
@@ -123,7 +123,7 @@
     <Button
         android:id="@+id/multiplyButton"
         style="@style/purpleButton"
-        android:text="*"
+        android:text="@string/multiply"
 
         app:layout_constraintBottom_toTopOf="@id/minusButton"
         app:layout_constraintEnd_toEndOf="@id/rightGuideline"
@@ -134,7 +134,7 @@
     <Button
         android:id="@+id/fourButton"
         style="@style/whiteButton"
-        android:text="4"
+        android:text="@string/four"
 
         app:layout_constraintBottom_toTopOf="@id/oneButton"
         app:layout_constraintEnd_toStartOf="@id/fiveButton"
@@ -144,7 +144,7 @@
     <Button
         android:id="@+id/fiveButton"
         style="@style/whiteButton"
-        android:text="5"
+        android:text="@string/five"
 
         app:layout_constraintBottom_toTopOf="@id/twoButton"
         app:layout_constraintEnd_toStartOf="@id/sixButton"
@@ -154,7 +154,7 @@
     <Button
         android:id="@+id/sixButton"
         style="@style/whiteButton"
-        android:text="6"
+        android:text="@string/six"
 
         app:layout_constraintBottom_toTopOf="@id/threeButton"
         app:layout_constraintEnd_toStartOf="@id/minusButton"
@@ -164,7 +164,7 @@
     <Button
         android:id="@+id/minusButton"
         style="@style/purpleButton"
-        android:text="-"
+        android:text="@string/minus"
 
         app:layout_constraintBottom_toTopOf="@id/plusButton"
         app:layout_constraintEnd_toEndOf="@id/rightGuideline"
@@ -175,7 +175,7 @@
     <Button
         android:id="@+id/oneButton"
         style="@style/whiteButton"
-        android:text="1"
+        android:text="@string/one"
 
         app:layout_constraintBottom_toTopOf="@id/aboveZeroGuideline"
         app:layout_constraintEnd_toStartOf="@id/twoButton"
@@ -185,7 +185,7 @@
     <Button
         android:id="@+id/twoButton"
         style="@style/whiteButton"
-        android:text="2"
+        android:text="@string/two"
 
         app:layout_constraintBottom_toTopOf="@id/aboveZeroGuideline"
         app:layout_constraintEnd_toStartOf="@id/threeButton"
@@ -195,7 +195,7 @@
     <Button
         android:id="@+id/threeButton"
         style="@style/whiteButton"
-        android:text="3"
+        android:text="@string/three"
 
         app:layout_constraintBottom_toTopOf="@id/aboveZeroGuideline"
         app:layout_constraintEnd_toStartOf="@id/plusButton"
@@ -205,7 +205,7 @@
     <Button
         android:id="@+id/plusButton"
         style="@style/purpleButton"
-        android:text="+"
+        android:text="@string/plus"
 
         app:layout_constraintBottom_toTopOf="@id/aboveZeroGuideline"
         app:layout_constraintEnd_toEndOf="@id/rightGuideline"
@@ -216,7 +216,7 @@
     <Button
         android:id="@+id/zeroButton"
         style="@style/whiteButton"
-        android:text="0"
+        android:text="@string/zero"
 
         app:layout_constraintBottom_toBottomOf="@id/underKeyboardGuideline"
         app:layout_constraintEnd_toStartOf="@id/CenterGuideline"
@@ -226,7 +226,7 @@
     <Button
         android:id="@+id/pointButton"
         style="@style/whiteButton"
-        android:text="."
+        android:text="@string/point"
 
         app:layout_constraintBottom_toBottomOf="@id/underKeyboardGuideline"
         app:layout_constraintEnd_toStartOf="@id/equalButton"
@@ -236,7 +236,7 @@
     <Button
         android:id="@+id/equalButton"
         style="@style/purpleButton"
-        android:text="="
+        android:text="@string/equal"
 
         app:layout_constraintBottom_toBottomOf="@id/underKeyboardGuideline"
         app:layout_constraintEnd_toEndOf="@id/rightGuideline"

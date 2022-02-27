@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/projects/calcTest/app/src/main/res/drawable-v24/button_calc.xml" value="0.2085" />
         <entry key="..\:/projects/calcTest/app/src/main/res/drawable-v24/panel_calc.xml" value="0.2085" />
+        <entry key="..\:/projects/calcTest/app/src/main/res/drawable-v24/screen_calc.xml" value="0.202" />
+        <entry key="..\:/projects/calcTest/app/src/main/res/drawable-v24/white_button_calc.xml" value="0.202" />
+        <entry key="..\:/projects/calcTest/app/src/main/res/drawable/purple_button_calc.xml" value="0.202" />
+        <entry key="..\:/projects/calcTest/app/src/main/res/drawable/purple_button_drawable.xml" value="0.202" />
         <entry key="..\:/projects/calcTest/app/src/main/res/layout/activity_main.xml" value="0.176" />
       </map>
     </option>

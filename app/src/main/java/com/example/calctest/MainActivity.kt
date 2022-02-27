@@ -10,9 +10,6 @@ import com.example.calctest.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val myCalc = CalcLogic()
-    private var isPointClicked = false
-    private var isSignLast = false
-    private var isPointLast = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    val listener = View.OnClickListener { view->
+    private val listener = View.OnClickListener { view->
         when(view.id) {
             binding.oneButton.id -> onClickNumber(view)
             binding.twoButton.id -> onClickNumber(view)
@@ -52,104 +49,58 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onClickNumber(view: View) {
-        val buff = binding.expressionText.text.toString() + (view as Button).text
-        binding.expressionText.text = buff
-
-        isSignLast = false
-        isPointLast = false
+    private fun onClickNumber(view: View) {
+        binding.expressionText.text = myCalc.addNum(binding.expressionText.text.toString(), view)
     }
-
-    fun onClickPoint() {
-        if((binding.expressionText.text.isEmpty())||(isSignLast)||(isPointClicked)) {
+    private fun onClickPoint() {
+        if(myCalc.canPressPoint(binding.expressionText.text.toString())) {
             Toast.makeText(applicationContext,
                 "this action is not possible", Toast.LENGTH_LONG).show()
         }
         else {
-            val buff = binding.expressionText.text.toString() + "."
-            binding.expressionText.text = buff
-
-            isPointLast = true
-            isPointClicked = true
+            binding.expressionText.text = myCalc.addPoint(binding.expressionText.text.toString())
         }
     }
-
-    fun onClickSign(view: View) {
-        if((binding.expressionText.text.isEmpty())||(isSignLast)||(isPointLast)) {
+    private fun onClickSign(view: View) {
+        if(myCalc.canPressSign(binding.expressionText.text.toString())) {
             Toast.makeText(applicationContext,
                 "this action is not possible", Toast.LENGTH_LONG).show()
         }
         else {
-            val buff = binding.expressionText.text.toString() + (view as Button).text
-            binding.expressionText.text = buff
-
-            isSignLast = true
-            isPointClicked = false
+            binding.expressionText.text = myCalc.addSign(binding.expressionText.text.toString(), view)
         }
     }
-
-    fun onClickChangeSign() {
-        if((binding.expressionText.text.isEmpty())||(isSignLast)) {
+    private fun onClickChangeSign() {
+        if(myCalc.canPressChangerSign(binding.expressionText.text.toString())) {
             Toast.makeText(applicationContext,
                 "this action is not possible", Toast.LENGTH_LONG).show()
         }
         else {
-            val regular = Regex("\\(?[+\\-]?[0-9.]+\\)?$")
-            val matchResult = regular.find(binding.expressionText.text)
-            if(matchResult != null) {
-                val buff: String
-                if(matchResult.value[0]=='-') {
-                    buff = matchResult.value.substringAfter('-')
-                    binding.expressionText.text =
-                        binding.expressionText.text.replaceRange(matchResult.range.first,
-                            matchResult.range.last + 1, "+$buff")
-                }
-                else {
-                    buff = matchResult.value.substringAfter('+')
-                    binding.expressionText.text =
-                        binding.expressionText.text.replaceRange(matchResult.range.first,
-                            matchResult.range.last + 1, "-$buff")
-                }
-            }
-            if(binding.expressionText.text[0] == '+') {
-                var buff = binding.expressionText.text.toString()
-                buff = buff.substringAfter('+')
-                binding.expressionText.text = buff
-            }
+            binding.expressionText.text = myCalc.changeSignLastNum(binding.expressionText.text.toString())
         }
     }
 
-    fun onClickPercent() {
-        if((binding.expressionText.text.isEmpty())||(isSignLast)||(isPointLast)) {
+    private fun onClickPercent() {
+        if(myCalc.canPressPercent(binding.expressionText.text.toString())) {
             Toast.makeText(applicationContext,
                 "this action is not possible", Toast.LENGTH_LONG).show()
         }
         else {
-            val buff = binding.expressionText.text.toString() + "/100"
-            binding.expressionText.text = buff
-
-            isPointClicked = false
+            binding.expressionText.text = myCalc.addPercent(binding.expressionText.text.toString())
         }
     }
 
-    fun screenFlush() {
-        binding.expressionText.text = ""
-
-        isPointClicked = false
-        isSignLast = false
-        isPointLast = false
+    private fun screenFlush() {
+        binding.expressionText.text = myCalc.screenFlush()
     }
 
-    fun onClickEqual() {
-        if((isPointLast)||(isSignLast)) {
+    private fun onClickEqual() {
+        if(myCalc.canPressEqual()) {
             Toast.makeText(applicationContext,
                 "this action is not possible", Toast.LENGTH_LONG).show()
         }
         else {
-            binding.expressionText.text = myCalc.calculate(binding.expressionText.text.toString())
-            if (binding.expressionText.text.contains('.')) {
-                isPointClicked = true
-            }
+            binding.expressionText.text = myCalc.addEqual(binding.expressionText.text.toString())
         }
     }
 }

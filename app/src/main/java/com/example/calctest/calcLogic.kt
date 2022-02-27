@@ -1,8 +1,13 @@
 package com.example.calctest
 
+import android.view.View
+import android.widget.Button
 import kotlin.math.floor
 
 class CalcLogic {
+    private var isPointClicked = false
+    private var isSignLast = false
+    private var isPointLast = false
 
     private  fun doSimpleOperation(expression: String):String {
         var buff = expression
@@ -31,16 +36,16 @@ class CalcLogic {
 
         var result = 0.0
         if(sign == '+') {
-            result =  (firstNum.toDouble() + secondNum.toDouble()).toDouble()
+            result =  firstNum.toDouble() + secondNum.toDouble()
         }
         if(sign == '-') {
-            result =  (firstNum.toDouble() - secondNum.toDouble()).toDouble()
+            result =  firstNum.toDouble() - secondNum.toDouble()
         }
         if(sign == '*') {
-            result = (firstNum.toDouble() * secondNum.toDouble()).toDouble()
+            result = firstNum.toDouble() * secondNum.toDouble()
         }
         if(sign == '/') {
-            result =  (firstNum.toDouble() / secondNum.toDouble()).toDouble()
+            result =  firstNum.toDouble() / secondNum.toDouble()
         }
 
         if(result>=0) {
@@ -83,7 +88,7 @@ class CalcLogic {
         return result
     }
 
-    fun calculate(expression:String):String {
+    private fun calculate(expression:String):String {
         var result = expression
         result = brackets(result)
         result = calculateSimpleExpression(result)
@@ -95,4 +100,77 @@ class CalcLogic {
         }
         return result
     }
+
+    fun changeSignLastNum (expression: String):String {
+        var result = expression
+        val regular = Regex("\\(?[+\\-]?[0-9.]+\\)?$")
+        val matchResult = regular.find(result)
+        if(matchResult != null) {
+            val buff: String
+            if(matchResult.value[0]=='-') {
+                buff = matchResult.value.substringAfter('-')
+                result =
+                    result.replaceRange(matchResult.range.first,
+                        matchResult.range.last + 1, "+$buff")
+            }
+            else {
+                buff = matchResult.value.substringAfter('+')
+                result =
+                    result.replaceRange(matchResult.range.first,
+                        matchResult.range.last + 1, "-$buff")
+            }
+        }
+        if(result[0] == '+') {
+            var buff = result
+            buff = buff.substringAfter('+')
+            result = buff
+        }
+
+        return result
+    }
+
+    fun canPressPoint (expression: String):Boolean = ((expression.isEmpty())||(isSignLast)||(isPointClicked))
+    fun canPressSign (expression: String):Boolean = ((expression.isEmpty())||(isSignLast)||(isPointLast))
+    fun canPressChangerSign (expression: String):Boolean = ((expression.isEmpty())||(isSignLast))
+    fun canPressEqual ():Boolean = ((isPointLast)||(isSignLast))
+    fun canPressPercent(expression: String):Boolean = ((expression.isEmpty())||(isSignLast)||(isPointLast))
+
+    fun addNum (expression: String, view: View):String {
+        val result = expression + (view as Button).text
+        isSignLast = false
+        isPointLast = false
+        return result
+    }
+    fun addPoint (expression: String):String {
+        val result = "$expression."
+        isPointLast = true
+        isPointClicked = true
+        return result
+    }
+    fun addSign (expression: String, view: View): String {
+        val result = expression + (view as Button).text
+        isSignLast = true
+        isPointClicked = false
+        return result
+    }
+    fun addPercent (expression: String):String {
+        val result = "$expression/100"
+        isPointClicked = false
+        return result
+    }
+    fun screenFlush():String {
+        val result = ""
+        isPointClicked = false
+        isSignLast = false
+        isPointLast = false
+        return result
+    }
+    fun addEqual(expression: String):String {
+        var result =  calculate(expression)
+        if (expression.contains('.')) {
+            isPointClicked = true
+        }
+        return result
+    }
+
 }
