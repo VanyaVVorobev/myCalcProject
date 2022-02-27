@@ -165,7 +165,7 @@ class CalcLogic {
     }
     fun addEqual(expression: String):String {
         val result =  calculate(expression)
-        if (expression.contains('.')) {
+        if (result.contains('.')) {
             isPointClicked = true
         }
         return result
